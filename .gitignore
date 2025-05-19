@@ -2,4 +2,4 @@ myenv
 env/
 model_copy.ipynb
 rough.ipynb
-__pycache__/
+__pycache__/*.csv
