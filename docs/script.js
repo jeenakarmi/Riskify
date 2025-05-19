@@ -22,6 +22,8 @@ $(document).ready(function() {
     function handleAnalyzeButton(e) {
         e.preventDefault();
         showContainer("#resultContainer");
+        $(".tab-btn[data-tab='financial']").addClass("active");
+        $("#tab-personal").addClass("active").show();
     }
 
     function handleRedoButton(e) {
