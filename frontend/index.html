@@ -4,15 +4,120 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LonaRiskAnalyzer</title>
-    <link rel="stylesheet" href="styles.css" type="text/css">
+    <link rel="stylesheet" href="style.css" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
     <div class="container">
-        <h1>LonaRiskAnalyzer</h1>
-        <form id="riskForm">
-            <label for="riskInput">Enter your risk:</label>
-            <input type="text" id="riskInput" name="riskInput" required>
+        <h1>Loan Risk Analyzer</h1>
+        <form id="riskForm" method="get" action="result.html">
+            <div class="form-row">
+                <label for="Age">
+                    <input type="number" id="Age" name="Age" placeholder="Enter your Age:" >
+                </label>
+
+                <label for="MonthlyIncome">
+                    <input type="number" id="MonthlyIncome" name="MonthlyIncome" placeholder = "Enter Monthly Income:" >
+                </label>
+            </div>
+
+            <div class="form-row">
+                <label for="SavingsAccountBalance">
+                    <input type="number" id="SavingsAccountBalance" name="SavingsAccountBalance" placeholder = "Enter Savings Account Balance:" >
+                </label>
+
+                <label for="CreditScore">
+                    <input type="number" id="CreditScore" name="CreditScore" placeholder = "Enter Credit Score:" >
+                </label>
+            </div>
+
+            <div class="form-row">
+                <label for="LoanAmount">
+                    <input type="number" id="LoanAmount" name="LoanAmount" placeholder = "Enter Loan Amount:" >
+                </label>
+
+                <label for="BaseInterestRate">
+                    <input type="number" id="BaseInterestRate" name="BaseInterestRate" placeholder = "Enter Base Interest Rate:" >
+                </label>
+            </div>
+
+            <div class="form-row">
+                <label for="LoanDuration">
+                    <input type="number" id="LoanDuration" name="LoanDuration" placeholder = "Enter Loan Duration:" >
+                </label>
+
+                <label for="MonthlyDebtPayments">
+                    <input type="number" id="MonthlyDebtPayments" name="MonthlyDebtPayments" placeholder = "Enter Monthly Debt Payments:" >
+                </label>
+            </div>
+
+            <div class="form-row">
+                <label for="TotalLiabilities">
+                    <input type="number" id="TotalLiabilities" name="TotalLiabilities" placeholder = "Enter TotalLiabilities:" >
+                </label>
+
+                <label for="DebtToIncomeRatio">
+                    <input type="number" id="DebtToIncomeRatio" name="DebtToIncomeRatio" placeholder = "Enter DebtToIncome Ratio:" >
+                </label>
+            </div>
+
+            
+            <div class="form-row">
+                <label for="NetWorth">
+                    <input type="number" id="NetWorth" name="NetWorth" placeholder = "Enter NetWorth:" >
+                </label>
+
+                <label for="TotalAssets">
+                    <input type="number" id="TotalAssets" name="TotalAssets" placeholder = "Enter Total Assets:" >
+                </label>
+            </div>
+            
+            <!-- <div class="form-row">
+                <label for="DebtToIncomeRatio">
+                    <input type="number" id="DebtToIncomeRatio" name="DebtToIncomeRatio" placeholder = "Enter DebtToIncome Ratio:" >
+                </label>
+
+                <label for="CreditCardUtilizationRate">
+                    <input type="number" id="CreditCardUtilizationRate" name="CreditCardUtilizationRate" placeholder = "Enter CreditCard Utilization Rate:" >
+                </label>
+            </div>
+
+            <div class="form-row">
+                <label for="Experience">
+                    <input type="number" id="Experience" name="Experience" placeholder = "Enter Experience:" >
+                </label>
+
+                <label for="JobTenure">
+                    <input type="number" id="JobTenure" name="JobTenure" placeholder = "Enter your risk:" >
+                </label>                
+            </div>
+
+            <div class="form-row">
+                <label for="MonthlyLoanPayment">
+                    <input type="number" id="MonthlyLoanPayment" name="MonthlyLoanPayment" placeholder = "Enter Monthly Loan Payment:" >
+                </label>
+
+                <label for="CheckingAccountBalance">
+                    <input type="number" id="CheckingAccountBalance" name="CheckingAccountBalance" placeholder = "Checking Account Balance:" >
+                </label>
+            </div>
+
+            <div class="form-row">
+                <label for="NumberOfOpenCreditLines">
+                    <input type="number" id="NumberOfOpenCreditLines" name="NumberOfOpenCreditLines" placeholder = "Enter Number Of Open Credit Lines:" >
+                </label>
+
+                <label for="PaymentHistory">
+                    <input type="number" id="PaymentHistory" name="PaymentHistory" placeholder = "Enter Payment History:" >
+                </label>
+            </div>
+
+            <div class="form-row">
+                <label for="UtilityBillsPaymentHistory">
+                    <input type="number" id="UtilityBillsPaymentHistory" name="UtilityBillsPaymentHistory" placeholder = "Enter Utility Bills Payment History:" >
+                </label>
+            </div> -->
+
             <button type="submit">Analyze</button>
         </form>
         <div id="result"></div>
