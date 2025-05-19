@@ -5,122 +5,116 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LonaRiskAnalyzer</title>
     <link rel="stylesheet" href="style.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
+
 <body>
-    <div class="container">
+    <div class="container" id="startContainer">
         <h1>Loan Risk Analyzer</h1>
-        <form id="riskForm" method="get" action="result.html">
-            <div class="form-row">
-                <label for="Age">
-                    <input type="number" id="Age" name="Age" placeholder="Enter your Age:" >
-                </label>
+        <button class="submit" id="startButton">Lets Analyze</button>
+    </div>
 
-                <label for="MonthlyIncome">
-                    <input type="number" id="MonthlyIncome" name="MonthlyIncome" placeholder = "Enter Monthly Income:" >
-                </label>
+    <div class="container" id="formContainer">
+        <h1>Loan Risk Analyzer</h1>
+        <div class="tab-nav">
+            <button class="tab-btn active" data-tab="personal">Personal Details</button>
+            <span class="tab-divider">|</span>
+            <button class="tab-btn" data-tab="financial">Financial Details</button>
+            <span class="tab-divider">|</span>
+            <button class="tab-btn" data-tab="loan">Loan Details</button>
+        </div>
+
+        <form id="riskForm" method="get" >
+            <div class="tab-content" id="tab-personal">
+            <!-- Personal Details fields -->
+                <div class="form-row">
+                    <label for="Age">
+                        <span>Age</span>
+                        <input type="number" id="Age" name="Age" placeholder="Enter your Age" >
+                    </label>
+
+                    <label for="MonthlyIncome">
+                        <span>Monthly Income</span>
+                        <input type="number" id="MonthlyIncome" name="MonthlyIncome" placeholder = "Enter Monthly Income" >
+                    </label>
+                </div>
             </div>
 
-            <div class="form-row">
-                <label for="SavingsAccountBalance">
-                    <input type="number" id="SavingsAccountBalance" name="SavingsAccountBalance" placeholder = "Enter Savings Account Balance:" >
-                </label>
+            <div class="tab-content" id="tab-financial" style="display:none;">
+                <!-- Financial Details fields -->                
+                <div class="form-row">
+                    <label for="TotalAssets">
+                        <span>Total Assets</span>
+                        <input type="number" id="TotalAssets" name="TotalAssets" placeholder = "Enter Total Assets:" >
+                    </label>
 
-                <label for="CreditScore">
-                    <input type="number" id="CreditScore" name="CreditScore" placeholder = "Enter Credit Score:" >
-                </label>
+                    <label for="NetWorth">
+                        <span>Net Worth</span>
+                        <input type="number" id="NetWorth" name="NetWorth" placeholder = "Enter Net Worth:" >
+                    </label>
+                </div>
+                <div class="form-row">
+                    <label for="TotalLiabilities">
+                        <span>Total Liabilities</span>
+                        <input type="number" id="TotalLiabilities" name="TotalLiabilities" placeholder = "Enter Total Liabilities" >
+                    </label>
+
+                    <label for="MonthlyDebtPayments">
+                        <span>Monthly Debt Payments</span>
+                        <input type="number" id="MonthlyDebtPayments" name="MonthlyDebtPayments" placeholder = "Enter Monthly Debt Payments" >
+                    </label>
+                </div>
             </div>
+            <div class="tab-content" id="tab-loan" style="display:none;">
+                <!-- Loan Details fields -->
+                 <div class="form-row">
+                    <label for="LoanAmount">
+                        <span>Loan Amount</span>
+                        <input type="number" id="LoanAmount" name="LoanAmount" placeholder = "Enter Loan Amount" >
+                    </label>
 
-            <div class="form-row">
-                <label for="LoanAmount">
-                    <input type="number" id="LoanAmount" name="LoanAmount" placeholder = "Enter Loan Amount:" >
-                </label>
+                    <label for="LoanDuration">
+                        <span>Loan Duration</span>
+                        <input type="number" id="LoanDuration" name="LoanDuration" placeholder = "Enter Loan Duration" >
+                    </label>
+                </div>
 
-                <label for="BaseInterestRate">
-                    <input type="number" id="BaseInterestRate" name="BaseInterestRate" placeholder = "Enter Base Interest Rate:" >
-                </label>
+                <div class="form-row">
+                    <label for="BaseInterestRate">
+                        <span>Base Interest Rate</span>
+                        <input type="number" id="BaseInterestRate" name="BaseInterestRate" placeholder = "Enter Base Interest Rate" >
+                    </label>
+
+                    <label for="MonthlyLoanPayment">
+                        <span>Monthly Loan Payment</span>
+                        <input type="number" id="MonthlyLoanPayment" name="MonthlyLoanPayment" placeholder = "Enter Monthly Loan Payment" >
+                    </label>
+                </div>
             </div>
-
-            <div class="form-row">
-                <label for="LoanDuration">
-                    <input type="number" id="LoanDuration" name="LoanDuration" placeholder = "Enter Loan Duration:" >
-                </label>
-
-                <label for="MonthlyDebtPayments">
-                    <input type="number" id="MonthlyDebtPayments" name="MonthlyDebtPayments" placeholder = "Enter Monthly Debt Payments:" >
-                </label>
-            </div>
-
-            <div class="form-row">
-                <label for="TotalLiabilities">
-                    <input type="number" id="TotalLiabilities" name="TotalLiabilities" placeholder = "Enter TotalLiabilities:" >
-                </label>
-
-                <label for="DebtToIncomeRatio">
-                    <input type="number" id="DebtToIncomeRatio" name="DebtToIncomeRatio" placeholder = "Enter DebtToIncome Ratio:" >
-                </label>
-            </div>
-
             
-            <div class="form-row">
-                <label for="NetWorth">
-                    <input type="number" id="NetWorth" name="NetWorth" placeholder = "Enter NetWorth:" >
-                </label>
-
-                <label for="TotalAssets">
-                    <input type="number" id="TotalAssets" name="TotalAssets" placeholder = "Enter Total Assets:" >
-                </label>
-            </div>
-            
-            <!-- <div class="form-row">
-                <label for="DebtToIncomeRatio">
-                    <input type="number" id="DebtToIncomeRatio" name="DebtToIncomeRatio" placeholder = "Enter DebtToIncome Ratio:" >
-                </label>
-
-                <label for="CreditCardUtilizationRate">
-                    <input type="number" id="CreditCardUtilizationRate" name="CreditCardUtilizationRate" placeholder = "Enter CreditCard Utilization Rate:" >
-                </label>
-            </div>
-
-            <div class="form-row">
-                <label for="Experience">
-                    <input type="number" id="Experience" name="Experience" placeholder = "Enter Experience:" >
-                </label>
-
-                <label for="JobTenure">
-                    <input type="number" id="JobTenure" name="JobTenure" placeholder = "Enter your risk:" >
-                </label>                
-            </div>
-
-            <div class="form-row">
-                <label for="MonthlyLoanPayment">
-                    <input type="number" id="MonthlyLoanPayment" name="MonthlyLoanPayment" placeholder = "Enter Monthly Loan Payment:" >
-                </label>
-
-                <label for="CheckingAccountBalance">
-                    <input type="number" id="CheckingAccountBalance" name="CheckingAccountBalance" placeholder = "Checking Account Balance:" >
-                </label>
-            </div>
-
-            <div class="form-row">
-                <label for="NumberOfOpenCreditLines">
-                    <input type="number" id="NumberOfOpenCreditLines" name="NumberOfOpenCreditLines" placeholder = "Enter Number Of Open Credit Lines:" >
-                </label>
-
-                <label for="PaymentHistory">
-                    <input type="number" id="PaymentHistory" name="PaymentHistory" placeholder = "Enter Payment History:" >
-                </label>
-            </div>
-
-            <div class="form-row">
-                <label for="UtilityBillsPaymentHistory">
-                    <input type="number" id="UtilityBillsPaymentHistory" name="UtilityBillsPaymentHistory" placeholder = "Enter Utility Bills Payment History:" >
-                </label>
-            </div> -->
-
-            <button type="submit">Analyze</button>
+            <div class="form-actions">
+                <button class="submit" type="submit" id="analyzeButton">Analyze</button>
+            </div>          
         </form>
-        <div id="result"></div>
+    </div>
+
+    <div class="container" id="resultContainer">
+        <h1>Loan Risk Analyzer</h1>
+        <div class="tab-nav">
+            <button class="tab-btn" disabled></button>
+            <span class="tab-divider">|</span>
+            <button class="tab-btn active" data-tab="financial" >Output</button>
+            <span class="tab-divider">|</span>
+            <button class="tab-btn" disabled></button>
+        </div>
+        <form id="outputForm" method="get">
+           <div class="form-actions">
+                <button class="submit" id="redoButton">
+                    Get Back
+                </button>
+           </div>
+        </form>
     </div>
     <script src="script.js"></script>
 </body>
