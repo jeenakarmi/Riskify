@@ -233,7 +233,7 @@ def calculate_overall_risk(row):
 df['RiskScore'] = df.apply(calculate_overall_risk, axis=1)
 
 # Save to CSV
-df.to_csv('focused_synthetic_loan_data.csv', index=False)
+df.to_csv('data.csv', index=False)
 print("\nFocused synthetic data saved to 'focused_synthetic_loan_data.csv'")
 
 # Display final feature count
