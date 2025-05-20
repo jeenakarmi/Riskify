@@ -2,6 +2,7 @@ $(document).ready(function() {
 
     function showContainer(containerId) {
         $("#startContainer, #formContainer, #resultContainer").hide();
+        updateButtonVisibility();
         $(containerId).show();
     }
 
@@ -23,17 +24,6 @@ $(document).ready(function() {
         }
     }
 
-    function updateAnalyzeButtonVisibility() {
-        const activeTab = $(".tab-btn.active").data("tab");
-        if (activeTab === "loan") {
-            $("#analyzeButton").show();
-            $("#nextButton").hide();
-        } else {
-            $("#analyzeButton").hide();
-            $("#nextButton").show();
-        }
-    }
-
     function handleStartButton() {
         showContainer("#formContainer");
         updateButtonVisibility();
@@ -41,7 +31,9 @@ $(document).ready(function() {
 
     function handleAnalyzeButton(e) {
         e.preventDefault();
+        // checkFormValue();
         showContainer("#resultContainer");
+
     }
 
     function handleNextButton(e) {
@@ -115,7 +107,7 @@ $(document).ready(function() {
         $(this).addClass("active");
         $("#tab-" + $(this).data("tab")).addClass("active").show();
 
-        updateAnalyzeButtonVisibility();
+        updateButtonVisibility();
     }
 
     function initTabs() {
@@ -125,7 +117,7 @@ $(document).ready(function() {
     }
 
     // Initial state
-    showContainer("#startContainer");
+    showContainer("#formContainer");
 
     // Event bindings
     $("#startButton").on("click", handleStartButton);
@@ -137,4 +129,50 @@ $(document).ready(function() {
 
     // Initialize tabs and button visibility
     initTabs();
+
+    // form validation
+    function checkAge(){
+        const age = parseInt($("#age").val());
+        const $errorMsg = $("#age").next(".error-msg");
+        if (isNaN(age) || age < 18 || age > 100) {
+            $errorMsg.text("Please enter a valid age between 18 and 100.");
+        } else {
+            $errorMsg.text(""); // Clear error if valid
+        }
+    }
+    function checkRates() {
+        const rate = parseFloat($("#baseInterestRate").val());
+        const $errorMsg = $("#baseInterestRate").next(".error-msg");
+        if(isNaN(rate) || rate < 0 || rate > 100){
+            $errorMsg.text("Please enter a valid rate between 0 and 100.");
+        }else{
+            $errorMsg.text(""); // Clear error if valid
+        }
+    }
+    function checkLoanDuration() {
+        const months = parseInt($("#loanDuration").val());
+        const $errorMsg = $("#loanDuration").next(".error-msg");
+        if(isNaN(months) || months < 0 || months > 360){
+            $errorMsg.text("Please enter a valid number of months between 0 and 360.");
+        }
+    }
+    function checkFormValue() {
+    let hasError = false;
+    $("#riskForm input").each(function() {
+        const value = $(this).val();
+        const $errorMsg = $(this).next(".error-msg");
+        if (isNaN(value) || value <= 0 || value === "") {
+            $errorMsg.text("Please enter a valid value.");
+        } else {
+            $errorMsg.text("");
+        }
+    });
+    if(!hasError){
+        SubmitEvent();
+    }
+}
+
+    $("#age").on("blur", checkAge);
+    $("#baseInterestRate").on('blur',checkRates);
+    $("#loanDuration").on('blur',checkLoanDuration);
 });

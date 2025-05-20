@@ -152,10 +152,21 @@ button.submit{
     margin: 2rem;
 }
 button.submit:hover{
-    transform: scale(1.3);
+    transform: scale(1.2);
     transition: transform 0.2s;
 }
-
+#backButton{
+    background-color: var(--color-accent);
+    border: grey 1px solid;
+}
+.error-msg{
+    position: absolute;
+    bottom: 0;
+    color: red;
+    font-size: 11px;
+    left: 5%;
+    text-align: center;
+}
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
