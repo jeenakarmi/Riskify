@@ -25,7 +25,7 @@
             <button class="tab-btn" data-tab="loan">Loan Details</button>
         </div>
 
-        <form id="riskForm" method="get" >
+        <form id="riskForm" method="POST" >
             <div class="tab-content" id="tab-personal">
             <!-- Personal Details fields -->
                 <div class="form-row">
@@ -48,26 +48,26 @@
                 <div class="form-row">
                     <label for="TotalAssets">
                         <span>Total Assets</span>
-                        <input type="number" id="TotalAssets" name="TotalAssets" placeholder = "Enter Total Assets:" >
+                        <input type="number" id="totalAssets" name="TotalAssets" placeholder = "Enter Total Assets:" >
                         <div class="error-msg"></div>
                     </label>
 
                     <label for="NetWorth">
                         <span>Net Worth</span>
-                        <input type="number" id="NetWorth" name="NetWorth" placeholder = "Enter Net Worth:" >
+                        <input type="number" id="netWorth" name="NetWorth" placeholder = "Enter Net Worth:" >
                         <div class="error-msg"></div>
                     </label>
                 </div>
                 <div class="form-row">
                     <label for="TotalLiabilities">
                         <span>Total Liabilities</span>
-                        <input type="number" id="TotalLiabilities" name="TotalLiabilities" placeholder = "Enter Total Liabilities" >
+                        <input type="number" id="totalLiabilities" name="TotalLiabilities" placeholder = "Enter Total Liabilities" >
                         <div class="error-msg"></div>
                     </label>
 
                     <label for="MonthlyDebtPayments">
                         <span>Monthly Debt Payments</span>
-                        <input type="number" id="MonthlyDebtPayments" name="MonthlyDebtPayments" placeholder = "Enter Monthly Debt Payments" >
+                        <input type="number" id="monthlyDebtPayments" name="MonthlyDebtPayments" placeholder = "Enter Monthly Debt Payments" >
                         <div class="error-msg"></div>
                     </label>
                 </div>
@@ -77,7 +77,7 @@
                  <div class="form-row">
                     <label for="LoanAmount">
                         <span>Loan Amount</span>
-                        <input type="number" id="LoanAmount" name="LoanAmount" placeholder = "Enter Loan Amount" >
+                        <input type="number" id="loanAmount" name="LoanAmount" placeholder = "Enter Loan Amount" >
                         <div class="error-msg"></div>
                     </label>
 
@@ -97,7 +97,7 @@
 
                     <label for="MonthlyLoanPayment">
                         <span>Monthly Loan Payment</span>
-                        <input type="number" id="MonthlyLoanPayment" name="MonthlyLoanPayment" placeholder = "Enter Monthly Loan Payment" >
+                        <input type="number" id="monthlyLoanPayment" name="MonthlyLoanPayment" placeholder = "Enter Monthly Loan Payment" >
                         <div class="error-msg"></div>
                     </label>
                 </div>
@@ -110,7 +110,7 @@
                 <button class="submit" id="nextButton">
                     Next
                 </button>
-                <button class="submit" type="submit" id="analyzeButton">
+                <button class="submit" type="submit" id="analyzeButton" onclick="submitToAPI()">
                     Analyze
                 </button>
             </div>          
@@ -127,6 +127,7 @@
             <button class="tab-btn" disabled></button>
         </div>
         <form id="outputForm" method="get">
+            <div id="predictionResult"></div>
            <div class="form-actions">
                 <button class="submit" id="redoButton">
                     Get Back
@@ -135,5 +136,6 @@
         </form>
     </div>
     <script src="script.js"></script>
+    <script src="api.js"></script>
 </body>
 </html>

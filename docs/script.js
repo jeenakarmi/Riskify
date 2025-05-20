@@ -134,12 +134,13 @@ $(document).ready(function() {
     function checkAge(){
         const age = parseInt($("#age").val());
         const $errorMsg = $("#age").next(".error-msg");
-        if (isNaN(age) || age < 18 || age > 100) {
+        if (isNaN(age) || age < 18 || age > 70) {
             $errorMsg.text("Please enter a valid age between 18 and 100.");
         } else {
             $errorMsg.text(""); // Clear error if valid
         }
     }
+
     function checkRates() {
         const rate = parseFloat($("#baseInterestRate").val());
         const $errorMsg = $("#baseInterestRate").next(".error-msg");
@@ -149,6 +150,7 @@ $(document).ready(function() {
             $errorMsg.text(""); // Clear error if valid
         }
     }
+
     function checkLoanDuration() {
         const months = parseInt($("#loanDuration").val());
         const $errorMsg = $("#loanDuration").next(".error-msg");
@@ -156,6 +158,7 @@ $(document).ready(function() {
             $errorMsg.text("Please enter a valid number of months between 0 and 360.");
         }
     }
+
     function checkFormValue() {
     let hasError = false;
     $("#riskForm input").each(function() {
@@ -170,7 +173,7 @@ $(document).ready(function() {
     if(!hasError){
         SubmitEvent();
     }
-}
+    }
 
     $("#age").on("blur", checkAge);
     $("#baseInterestRate").on('blur',checkRates);
