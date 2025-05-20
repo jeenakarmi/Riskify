@@ -3,6 +3,7 @@ import joblib  # or import your model loading library
 from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app) 
 
 # Load your trained model (adjust path and loading as needed)
 model = joblib.load('credit_risk_model.pkl')
