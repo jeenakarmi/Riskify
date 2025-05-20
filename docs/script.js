@@ -31,9 +31,7 @@ $(document).ready(function() {
 
     function handleAnalyzeButton(e) {
         e.preventDefault();
-        // checkFormValue();
-        showContainer("#resultContainer");
-
+        checkFormValue();  // Will call submitToAPI() if validation passes
     }
 
     function handleNextButton(e) {
@@ -135,7 +133,7 @@ $(document).ready(function() {
         const age = parseInt($("#age").val());
         const $errorMsg = $("#age").next(".error-msg");
         if (isNaN(age) || age < 18 || age > 70) {
-            $errorMsg.text("Please enter a valid age between 18 and 100.");
+            $errorMsg.text("Please enter a valid age between 18 and 70.");
         } else {
             $errorMsg.text(""); // Clear error if valid
         }
@@ -160,19 +158,21 @@ $(document).ready(function() {
     }
 
     function checkFormValue() {
-    let hasError = false;
-    $("#riskForm input").each(function() {
-        const value = $(this).val();
-        const $errorMsg = $(this).next(".error-msg");
-        if (isNaN(value) || value <= 0 || value === "") {
-            $errorMsg.text("Please enter a valid value.");
-        } else {
-            $errorMsg.text("");
+        let hasError = false;
+        $("#riskForm input").each(function() {
+            const value = $(this).val();
+            const $errorMsg = $(this).next(".error-msg");
+            if (isNaN(value) || value <= 0 || value === "") {
+                $errorMsg.text("Please enter a valid value.");
+                hasError = true;
+            } else {
+                $errorMsg.text("");
+            }
+        });
+        if(!hasError){
+            submitToAPI();  // Not SubmitEvent()
         }
-    });
-    if(!hasError){
-        SubmitEvent();
-    }
+
     }
 
     $("#age").on("blur", checkAge);
