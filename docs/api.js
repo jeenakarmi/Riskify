@@ -7,7 +7,7 @@ function submitToAPI() {
         TotalLiabilities: parseFloat($("#totalLiabilities").val()),
         MonthlyDebtPayments: parseFloat($("#monthlyDebtPayments").val()),
         LoanAmount: parseFloat($("#loanAmount").val()),
-        BaseInterestRate: parseFloat($("#baseInterestRate").val()),
+        BaseInterestRate: parseFloat($("#baseInterestRate").val()/100),
         LoanDuration: parseInt($("#loanDuration").val()),
         MonthlyLoanPayment: parseFloat($("#monthlyLoanPayment").val())
     };
