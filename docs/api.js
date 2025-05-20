@@ -1,29 +1,31 @@
 function submitToAPI() {
-    // Gather form data
     const data = {
-        Age: $("#age").val(),
-        MonthlyIncome: $("#monthlyIncome").val(),
-        TotalAssets: $("#totalAssets").val(),
-        NetWorth: $("#netWorth").val(),
-        TotalLiabilities: $("#totalLiabilities").val(),
-        MonthlyDebtPayments: $("#monthlyDebtPayments").val(),
-        LoanAmount: $("#loanAmount").val(),
-        BaseInterestRate: $("#baseInterestRate").val(),
-        LoanDuration: $("#loanDuration").val(),
-        MonthlyLoanPayment: $("#monthlyLoanPayment").val()
+        Age: parseInt($("#age").val()),
+        MonthlyIncome: parseFloat($("#monthlyIncome").val()),
+        TotalAssets: parseFloat($("#totalAssets").val()),
+        NetWorth: parseFloat($("#netWorth").val()),
+        TotalLiabilities: parseFloat($("#totalLiabilities").val()),
+        MonthlyDebtPayments: parseFloat($("#monthlyDebtPayments").val()),
+        LoanAmount: parseFloat($("#loanAmount").val()),
+        BaseInterestRate: parseFloat($("#baseInterestRate").val()),
+        LoanDuration: parseInt($("#loanDuration").val()),
+        MonthlyLoanPayment: parseFloat($("#monthlyLoanPayment").val())
     };
 
     $.ajax({
-        url: "http://localhost:5000/predict", // Adjust if deploying
+        url: "http://localhost:5000/predict",
         type: "POST",
         contentType: "application/json",
         data: JSON.stringify(data),
         success: function(response) {
-            // Handle the prediction result
             $("#predictionResult").text("Prediction: " + response.prediction);
+            $("#formContainer").hide();
+            $("#resultContainer").show();
         },
         error: function() {
             $("#predictionResult").text("Error connecting to prediction API.");
+            $("#formContainer").hide();
+            $("#resultContainer").show();
         }
     });
 }
