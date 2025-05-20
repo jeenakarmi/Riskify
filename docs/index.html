@@ -37,7 +37,7 @@
 
                     <label for="MonthlyIncome">
                         <span>Monthly Income</span>
-                        <input type="number" id="monthlyIncome" name="MonthlyIncome" placeholder = "Enter Monthly Income" >
+                        <input type="number" id="monthlyIncome" name="MonthlyIncome" onblur = "checkNumberRange(this)" placeholder = "Enter Monthly Income" >
                         <div class="error-msg"></div>
                     </label>
                 </div>
@@ -48,26 +48,26 @@
                 <div class="form-row">
                     <label for="TotalAssets">
                         <span>Total Assets</span>
-                        <input type="number" id="totalAssets" name="TotalAssets" placeholder = "Enter Total Assets:" >
+                        <input type="number" id="totalAssets" name="TotalAssets" onblur = "checkNumberRange(this)" placeholder = "Enter Total Assets:" >
                         <div class="error-msg"></div>
                     </label>
 
                     <label for="NetWorth">
                         <span>Net Worth</span>
-                        <input type="number" id="netWorth" name="NetWorth" placeholder = "Enter Net Worth:" >
+                        <input type="number" id="netWorth" name="NetWorth" onblur = "checkNumberRange(this)" placeholder = "Enter Net Worth:" >
                         <div class="error-msg"></div>
                     </label>
                 </div>
                 <div class="form-row">
                     <label for="TotalLiabilities">
                         <span>Total Liabilities</span>
-                        <input type="number" id="totalLiabilities" name="TotalLiabilities" placeholder = "Enter Total Liabilities" >
+                        <input type="number" id="totalLiabilities" name="TotalLiabilities" onblur = "checkNumberRange(this)" placeholder = "Enter Total Liabilities" >
                         <div class="error-msg"></div>
                     </label>
 
                     <label for="MonthlyDebtPayments">
                         <span>Monthly Debt Payments</span>
-                        <input type="number" id="monthlyDebtPayments" name="MonthlyDebtPayments" placeholder = "Enter Monthly Debt Payments" >
+                        <input type="number" id="monthlyDebtPayments" name="MonthlyDebtPayments" onblur = "checkNumberRange(this)" placeholder = "Enter Monthly Debt Payments" >
                         <div class="error-msg"></div>
                     </label>
                 </div>
@@ -77,13 +77,13 @@
                  <div class="form-row">
                     <label for="LoanAmount">
                         <span>Loan Amount</span>
-                        <input type="number" id="loanAmount" name="LoanAmount" placeholder = "Enter Loan Amount" >
+                        <input type="number" id="loanAmount" name="LoanAmount" onblur = "checkNumberRange(this)" placeholder = "Enter Loan Amount" >
                         <div class="error-msg"></div>
                     </label>
 
                     <label for="BaseInterestRate">
                         <span>Base Interest Rate</span>
-                        <input type="number" id="baseInterestRate" name="BaseInterestRate" placeholder = "Enter Base Interest Rate" >
+                        <input type="number" id="baseInterestRate" name="BaseInterestRate" placeholder = "Enter Base Interest Rate(0-100)" >
                         <div class="error-msg"></div>
                     </label>
                 </div>
@@ -91,7 +91,7 @@
                 <div class="form-row">
                     <label for="LoanDuration">
                         <span>Loan Duration</span>
-                        <input type="number" id="loanDuration" name="LoanDuration" placeholder = "Enter Loan Duration" >
+                        <input type="number" id="loanDuration" name="LoanDuration" placeholder = "Enter Loan Duration(months)" >
                         <div class="error-msg"></div>
                     </label>
 
@@ -110,7 +110,7 @@
                 <button class="submit" id="nextButton">
                     Next
                 </button>
-                <button class="submit" type="submit" id="analyzeButton" onclick="checkFormValue()">
+                <button class="submit" type="submit" id="analyzeButton">
                     Analyze
                 </button>
             </div>          
@@ -135,6 +135,7 @@
            </div>
         </form>
     </div>
+    <script src="validation.js"></script>
     <script src="script.js"></script>
     <script src="api.js"></script>
 </body>
