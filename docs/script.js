@@ -115,7 +115,7 @@ $(document).ready(function() {
     }
 
     // Initial state
-    showContainer("#formContainer");
+    showContainer("#startContainer");
 
     // Event bindings
     $("#startButton").on("click", handleStartButton);
@@ -164,15 +164,14 @@ $(document).ready(function() {
             const $errorMsg = $(this).next(".error-msg");
             if (isNaN(value) || value <= 0 || value === "") {
                 $errorMsg.text("Please enter a valid value.");
-                hasError = true;
+                hasError = true;  // Mark error if input is invalid
             } else {
                 $errorMsg.text("");
             }
         });
-        if(!hasError){
-            submitToAPI();  // Not SubmitEvent()
+        if (!hasError) {
+            submitToAPI();  // Only submit if there's no error
         }
-
     }
 
     $("#age").on("blur", checkAge);
