@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LonaRiskAnalyzer</title>
+    <title>Loan-Risk-Analyzer</title>
     <link rel="stylesheet" href="style.css" type="text/css">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -25,18 +25,20 @@
             <button class="tab-btn" data-tab="loan">Loan Details</button>
         </div>
 
-        <form id="riskForm" method="get" >
+        <form id="riskForm" method="POST" >
             <div class="tab-content" id="tab-personal">
             <!-- Personal Details fields -->
                 <div class="form-row">
                     <label for="Age">
                         <span>Age</span>
-                        <input type="number" id="Age" name="Age" placeholder="Enter your Age" >
+                        <input type="number" id="age" name="Age" placeholder="Enter your Age" >
+                        <div class="error-msg"></div>
                     </label>
 
                     <label for="MonthlyIncome">
                         <span>Monthly Income</span>
-                        <input type="number" id="MonthlyIncome" name="MonthlyIncome" placeholder = "Enter Monthly Income" >
+                        <input type="number" id="monthlyIncome" name="MonthlyIncome" placeholder = "Enter Monthly Income" >
+                        <div class="error-msg"></div>
                     </label>
                 </div>
             </div>
@@ -46,23 +48,27 @@
                 <div class="form-row">
                     <label for="TotalAssets">
                         <span>Total Assets</span>
-                        <input type="number" id="TotalAssets" name="TotalAssets" placeholder = "Enter Total Assets:" >
+                        <input type="number" id="totalAssets" name="TotalAssets" placeholder = "Enter Total Assets:" >
+                        <div class="error-msg"></div>
                     </label>
 
                     <label for="NetWorth">
                         <span>Net Worth</span>
-                        <input type="number" id="NetWorth" name="NetWorth" placeholder = "Enter Net Worth:" >
+                        <input type="number" id="netWorth" name="NetWorth" placeholder = "Enter Net Worth:" >
+                        <div class="error-msg"></div>
                     </label>
                 </div>
                 <div class="form-row">
                     <label for="TotalLiabilities">
                         <span>Total Liabilities</span>
-                        <input type="number" id="TotalLiabilities" name="TotalLiabilities" placeholder = "Enter Total Liabilities" >
+                        <input type="number" id="totalLiabilities" name="TotalLiabilities" placeholder = "Enter Total Liabilities" >
+                        <div class="error-msg"></div>
                     </label>
 
                     <label for="MonthlyDebtPayments">
                         <span>Monthly Debt Payments</span>
-                        <input type="number" id="MonthlyDebtPayments" name="MonthlyDebtPayments" placeholder = "Enter Monthly Debt Payments" >
+                        <input type="number" id="monthlyDebtPayments" name="MonthlyDebtPayments" placeholder = "Enter Monthly Debt Payments" >
+                        <div class="error-msg"></div>
                     </label>
                 </div>
             </div>
@@ -71,30 +77,42 @@
                  <div class="form-row">
                     <label for="LoanAmount">
                         <span>Loan Amount</span>
-                        <input type="number" id="LoanAmount" name="LoanAmount" placeholder = "Enter Loan Amount" >
+                        <input type="number" id="loanAmount" name="LoanAmount" placeholder = "Enter Loan Amount" >
+                        <div class="error-msg"></div>
                     </label>
 
-                    <label for="LoanDuration">
-                        <span>Loan Duration</span>
-                        <input type="number" id="LoanDuration" name="LoanDuration" placeholder = "Enter Loan Duration" >
+                    <label for="BaseInterestRate">
+                        <span>Base Interest Rate</span>
+                        <input type="number" id="baseInterestRate" name="BaseInterestRate" placeholder = "Enter Base Interest Rate" >
+                        <div class="error-msg"></div>
                     </label>
                 </div>
 
                 <div class="form-row">
-                    <label for="BaseInterestRate">
-                        <span>Base Interest Rate</span>
-                        <input type="number" id="BaseInterestRate" name="BaseInterestRate" placeholder = "Enter Base Interest Rate" >
+                    <label for="LoanDuration">
+                        <span>Loan Duration</span>
+                        <input type="number" id="loanDuration" name="LoanDuration" placeholder = "Enter Loan Duration" >
+                        <div class="error-msg"></div>
                     </label>
 
                     <label for="MonthlyLoanPayment">
                         <span>Monthly Loan Payment</span>
-                        <input type="number" id="MonthlyLoanPayment" name="MonthlyLoanPayment" placeholder = "Enter Monthly Loan Payment" >
+                        <input type="number" id="monthlyLoanPayment" name="MonthlyLoanPayment" placeholder = "Enter Monthly Loan Payment" >
+                        <div class="error-msg"></div>
                     </label>
                 </div>
             </div>
-            
+            <!-- buttons -->
             <div class="form-actions">
-                <button class="submit" type="submit" id="analyzeButton">Analyze</button>
+                <button class="submit" id="backButton">
+                    Back
+                </button>
+                <button class="submit" id="nextButton">
+                    Next
+                </button>
+                <button class="submit" type="submit" id="analyzeButton" onclick="submitToAPI()">
+                    Analyze
+                </button>
             </div>          
         </form>
     </div>
@@ -109,6 +127,7 @@
             <button class="tab-btn" disabled></button>
         </div>
         <form id="outputForm" method="get">
+            <div id="predictionResult"></div>
            <div class="form-actions">
                 <button class="submit" id="redoButton">
                     Get Back
@@ -117,5 +136,6 @@
         </form>
     </div>
     <script src="script.js"></script>
+    <script src="api.js"></script>
 </body>
 </html>
