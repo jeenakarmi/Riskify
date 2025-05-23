@@ -1,40 +1,3 @@
-    // form validation
-    function checkAge(){//18-70
-        const age = parseInt($("#age").val());
-        const $errorMsg = $("#age").next(".error-msg");
-        if (isNaN(age) || age < 18 || age > 70) {
-            $errorMsg.text("Please enter a valid age between 18 and 70.");
-            return true;
-        } else {
-            $errorMsg.text(""); // Clear error if valid
-            return false;
-        }
-    }
-
-    function checkRates() { // 0-100
-        const rate = parseFloat($("#baseInterestRate").val());
-        const $errorMsg = $("#baseInterestRate").next(".error-msg");
-        if(isNaN(rate) || rate < 0 || rate > 100){
-            $errorMsg.text("Please enter a valid rate between 0 and 100.");
-            return true;
-        }else{
-            $errorMsg.text(""); // Clear error if valid
-            return false;
-        }
-    }
-
-    function checkLoanDuration() { // 6-360
-        const months = parseInt($("#loanDuration").val());
-        const $errorMsg = $("#loanDuration").next(".error-msg");
-        if(isNaN(months) || months < 6 || months > 360){
-            $errorMsg.text("Please enter a valid number of months between 0 and 360.");
-            return true;
-        }else{
-            $errorMsg.text(""); // Clear error if valid
-            return false;
-        }
-    }
-
     function calculateLoanPayment() {
         let amount = parseFloat($("#loanAmount").val());
         let annualRate = parseFloat($("#baseInterestRate").val());
@@ -97,43 +60,69 @@
         let hasError = false;
 
         $("#riskForm input").each(function() {
-            const min = 1;
-            const max = 100000000000;
-            const value = $(this).val();
-            const $errorMsg = $(this).next(".error-msg");
-            if (isNaN(value) || value < min || value >max || value === "") {
-                $errorMsg.text("Please enter a valid value.");
-                hasError = true;  // Mark error if input is invalid
-            } else {
-                $errorMsg.text("");
+            if (validateInput.call(this)) {
+                hasError = true;
             }
         });
 
-        // Collect custom validator errors
-        if (checkAge()) hasError = true;
-        if (checkRates()) hasError = true;
-        if (checkLoanDuration()) hasError = true;
-
         if (!hasError) {
             submitToAPI();  // Only submit if there's no error
+        } else {
+            alert("Please Make Sure All Input Are Valid!");
         }
     }
-
-    function checkNumberRange(inputElement){
-        const $input = $(inputElement);
+    
+    function getMinMax(id){
+        let minimum, maximum;
+        switch (id){
+            case 'age':
+                minimum = 18;
+                maximum = 70;
+                break
+            case 'rate':
+                minimum = 0;
+                maximum = 100;
+                break
+            case 'loanDuration':
+                minimum = 6;
+                maximum = 360;
+                break
+            case "loanAmount":
+            case "monthlyIncome":
+                minimum = 1000;
+                maximum = 1000000000;
+                break
+            default:
+                minimum = 0;
+                maximum = 1000000000;
+                break;
+        }
+        return {minimum, maximum};
+    }
+    function validateInput(){
+        const $input = $(this);
         const value = $input.val();
+        const id = $input.attr("id");
         const $errorMsg = $input.next(".error-msg");
-        if(value === '' || isNaN(value) || value<=10 || value >= 100000000000){
-            $errorMsg.text("Please enter a valid value.");
-        }else {
+        const {minimum, maximum} = getMinMax(id);
+
+        if (isNaN(value) || value < minimum || value > maximum || value === "") {
+            $errorMsg.text(`Please enter a valid value. (${minimum}-${maximum})`);
+            return true;  // has error
+        } else {
             $errorMsg.text("");
+            return false;   // has no error
         }
     }
 
 $(document).ready(() => {
-    $("#age").on("blur", checkAge);
-    $("#baseInterestRate").on('blur',checkRates);
-    $("#loanDuration").on('blur',checkLoanDuration);
+    $("#riskForm input").each(function() {
+        const $input = $(this);
+        const id = $input.attr("id");
+        const {minimum, maximum} = getMinMax(id);
+        $input.attr('placeholder',`Eg.: (${minimum} - ${maximum})`);
+    })
+    $("#riskForm input").on("change", validateInput);
 
     // Trigger calculation when relevant fields change
     $("#loanAmount, #baseInterestRate, #monthlyLoanPayment").on("input", calculateLoanDuration);
