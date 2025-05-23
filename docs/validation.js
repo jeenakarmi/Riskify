@@ -79,7 +79,7 @@
                 minimum = 18;
                 maximum = 70;
                 break
-            case 'rate':
+            case 'baseInterestRate':
                 minimum = 0;
                 maximum = 100;
                 break
@@ -120,7 +120,8 @@ $(document).ready(() => {
         const $input = $(this);
         const id = $input.attr("id");
         const {minimum, maximum} = getMinMax(id);
-        $input.attr('placeholder',`Eg.: (${minimum} - ${maximum})`);
+        const currentPlaceholder = $input.attr('placeholder') || '';
+        $input.attr('placeholder',(`Eg.: (${minimum} - ${maximum}) ${currentPlaceholder}`));
     })
     $("#riskForm input").on("change", validateInput);
 
