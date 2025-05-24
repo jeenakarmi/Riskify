@@ -18,7 +18,14 @@ function submitToAPI() {
         contentType: "application/json",
         data: JSON.stringify(data),
         success: function(response) {
-            $("#predictionResult").text("Prediction: " + response.prediction);
+            if(response.prediction === "Not Risky"){
+                $("#predictionResult").text(`Prediction: ${response.prediction}`);
+                $("#explanationResult").text(`Based on the provided information, this application carries low financial risk.`).css('color', 'green');
+            }else if(response.prediction === "Risky"){
+                $("#predictionResult").text(`Prediction: ${response.prediction}`);
+                $("#explanationResult").text(`Based on the provided information, this application carries high financial risk.`).css('color', 'red');
+
+            }
             $("#formContainer").hide();
             $("#resultContainer").show();
         },

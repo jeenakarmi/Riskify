@@ -42,7 +42,7 @@ body{
     margin: 0 0 1rem 0;
     padding: 0;
 }
-#formContainer form ,#resultContainer form{
+#formContainer form ,#resultContainer #outputForm{
     display: flex;
     flex-direction: column;
     height: 20rem;
@@ -61,10 +61,14 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 200px;        /* adjust as needed */
-    font-size: 1.5rem;
+    min-height: 150px;        /* adjust as needed */
+    font-size: 2rem;
+    font-weight: 900;
     width: 100%;
     text-align: center;
+}
+#explanationResult {
+    font-size: 1.3rem;
 }
 
 /* form box nav bar design */
