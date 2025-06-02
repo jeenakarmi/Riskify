@@ -24,5 +24,7 @@ Using Decision Tree Classifier built with Python and Scikit-Learn, Riskify aims 
 
 ## Instruction
 
-Create python virtual environment with name `env` or `myenv`. Other names must be added to the `.gitignore` file so as to not push the environment variable folder to the repository.
+- Create python virtual environment with name `env` or `myenv`. Other names must be added to the `.gitignore` file so as to not push the environment variable folder to the repository.
+- Run the backend with `python app.py` and open `index.html` in your browser to access the frontend.
+
 
